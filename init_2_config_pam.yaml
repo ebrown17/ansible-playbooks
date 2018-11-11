@@ -1,0 +1,8 @@
+- name: Configure Pam module 
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: su
+  roles:
+    - init_2_config_pam
+

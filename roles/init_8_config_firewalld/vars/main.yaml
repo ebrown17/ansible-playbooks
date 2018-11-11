@@ -1,0 +1,3 @@
+service_files: services
+zone_files: zones
+direct_file: direct/direct.xml

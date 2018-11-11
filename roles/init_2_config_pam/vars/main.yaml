@@ -1,0 +1,24 @@
+---
+  pam:
+    ansible:
+      su:
+        - { type: auth, control: '[success=2 default=ignore]', module_path: pam_succeed_if.so, module_arguments: 'use_uid user notingroup ansible' }
+        - { type: auth, control: required, module_path: pam_wheel.so, module_arguments: 'use_uid group=ansible'}
+        - { type: auth, control: required, module_path: pam_listfile.so, module_arguments: 'item=user sense=allow onerr=fail file=/etc/security/su-ansible-access'}
+    prod:
+      su:
+        - { type: auth, control: '[success=2 default=ignore]', module_path: pam_succeed_if.so, module_arguments: 'use_uid user notingroup prod-users' }
+        - { type: auth, control: required, module_path: pam_wheel.so, module_arguments: 'use_uid group=prod-users'}           
+        - { type: auth, control: required, module_path: pam_listfile.so, module_arguments: 'item=user sense=allow onerr=fail file=/etc/security/su-prod-access'}
+    global:      
+      systemauth:
+        - { type: session, control: required, module_path: pam_tty_audit.so, module_arguments: 'enable=*' }
+      passwordauth:
+        - { type: session, control: required, module_path: pam_tty_audit.so, module_arguments: 'enable=*' }
+  
+  securityfiles:
+    su-ansible-access: |
+       root
+    su-prod-access: |
+       prod-users
+       root

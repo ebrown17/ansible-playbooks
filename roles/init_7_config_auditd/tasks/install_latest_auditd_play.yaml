@@ -1,0 +1,13 @@
+- name: Install or update auditd and its plugins
+  block:
+    - name: Install or update auditd and its plugins
+      yum:
+        name:
+          - audit
+          - audispd-plugins
+        state: latest
+      register: result
+
+    - name: Print result from
+      debug:
+        msg:  "{{result.results}}"

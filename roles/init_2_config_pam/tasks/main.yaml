@@ -1,0 +1,3 @@
+- include: config_pam_su_play.yaml
+- include: config_pam_auditd_play.yaml
+

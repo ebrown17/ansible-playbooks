@@ -1,0 +1,8 @@
+- name: Configure user groups for system
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: su
+  roles:
+    - init_1_config_groups
+

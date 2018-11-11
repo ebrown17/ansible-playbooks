@@ -1,0 +1,12 @@
+- name: Print Groups to be configured
+  debug:
+    msg: 'Group: {{ item }} '
+  with_items: '{{ groupis }}'
+
+- name : Create Groups Block 
+  block:
+    - name: Create Groups  
+      group:
+        name: '{{ item }}'
+        state: present          
+      with_items: '{{ groupis }}'

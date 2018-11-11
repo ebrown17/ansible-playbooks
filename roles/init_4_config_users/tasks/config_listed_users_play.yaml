@@ -1,0 +1,24 @@
+- name: Print listed user information to be configured 
+  debug:
+    msg: 'Username: {{ username }} Group: {{ group }} Hashed pass: {{ password }} '
+  vars:
+    group: '{{ item.value.group }}'
+    password: '{{ item.value.password }}'
+    username: '{{ item.value.username }}'
+  with_dict: '{{ users }}'
+
+- name: Required steps to create users
+  block:
+    - name: Create User with listed information
+      user:
+        append: true
+        comment: '{{ username }} created by ansible'            
+        groups: '{{ group }}'
+        name: '{{ username }}'
+        password: '{{ password }}'
+        state: present
+      vars:
+        group: '{{ item.value.group }}'
+        password: '{{ item.value.password }}'
+        username: '{{ item.value.username }}'
+      with_dict: '{{ users }}'

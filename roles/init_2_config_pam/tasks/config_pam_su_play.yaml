@@ -1,0 +1,30 @@
+
+- name: Print security files to be created
+  debug:
+    msg: 'Content: {{ filecontent }} will be created at {{ security_location }}/{{ filename }}'    
+  vars:
+    filecontent: '{{ item.value }}'
+    filename: '{{ item.key }}'
+  with_dict: '{{ securityfiles}} '
+
+- name: Configure PAM rules per host
+  block:
+    - name: Create Su Security files from list and write to {{ security_location }}
+      copy:
+        content: '{{ filecontent }}'
+        dest: '{{ security_location }}/{{ filename }}'
+        mode: '0400'    
+      vars:
+        filecontent: '{{ item.value }}'
+        filename: '{{ item.key }}'
+      with_dict: '{{ securityfiles }} '
+
+    - name: 'Add su rules '
+      template:
+        src:  su.j2
+        dest: '{{ pam_location }}/{{pam_su_name}}'
+        backup: yes
+        owner: root
+        group: root
+        mode: '600'
+ 

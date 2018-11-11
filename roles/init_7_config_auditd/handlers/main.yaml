@@ -1,0 +1,9 @@
+# TEST
+- name: restart auditd
+  debug:
+    msg: 'Restart AUDITD called'
+
+#- name: restart auditd
+#  command: /usr/sbin/service auditd restart
+#  args:
+#    warn: no

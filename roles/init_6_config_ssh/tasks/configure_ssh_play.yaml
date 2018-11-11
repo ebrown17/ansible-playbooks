@@ -1,0 +1,35 @@
+- name: Configure SSH setup per host
+  block:  
+    - name: Create authorized_key directory at  {{ authorized_location }}
+      file:
+        path: '{{ authorized_location }}'
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+      notify:
+      - restart sshd         
+
+    - name: Set public authorized key per user from file {{key_location}}
+      authorized_key:
+        key: '{{ lookup(''file'', ''{{ key_location }}'') }}'
+        manage_dir: false
+        path: '{{ authorized_location }}/{{ username }}.pub'
+        state: present
+        user: '{{ username }}'
+      vars:
+        username: '{{ item.value.username }}'        
+        key_location: '{{ stored_keys }}/{{ item.value.group }}/{{ item.value.username }}/{{ item.value.username }}.pub'
+      with_dict: '{{ users }}'
+      notify:
+      - restart sshd 
+
+    - name: Add Group to sshd config file
+      replace:        
+        dest: '{{ sshd_config }}'
+        regexp: '^(AllowGroups(?!.*\b{{ item }}\b).*)$'
+        replace: '\1 {{ item }}'
+        validate: '/usr/sbin/sshd -T -f %s'
+      with_items: '{{ usergroups }}'     
+      notify:
+      - restart sshd  

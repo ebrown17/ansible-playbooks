@@ -1,0 +1,42 @@
+
+- name: Configure PAM rules per host
+  block:
+    - name: 'Add system-auth rule for auditd'
+      pamd:
+        name: '{{pam_system_auth_name}}'
+        path: '{{ pam_location }}'
+        new_type: '{{type}}'
+        new_control: '{{control}}'
+        new_module_path: '{{module_path}}'
+        module_arguments: '{{module_arguments}}'
+        state: before
+        type: session            
+        control: optional            
+        module_path: pam_keyinit.so
+      vars:      
+        type: '{{ item.type }}'
+        control: '{{ item.control }}'
+        module_path: '{{ item.module_path }}'
+        module_arguments: '{{ item.module_arguments }}'
+      with_items:
+        - "{{ pam.global.systemauth }}"
+
+    - name: 'Add password-auth rule for auditd'
+      pamd:
+        name: '{{pam_password_auth_name}}'
+        path: '{{ pam_location }}'
+        new_type: '{{type}}'
+        new_control: '{{control}}'
+        new_module_path: '{{module_path}}'
+        module_arguments: '{{module_arguments}}'
+        state: before
+        type: session            
+        control: optional            
+        module_path: pam_keyinit.so
+      vars:      
+        type: '{{ item.type }}'
+        control: '{{ item.control }}'
+        module_path: '{{ item.module_path }}'
+        module_arguments: '{{ item.module_arguments }}'
+      with_items:
+        - "{{ pam.global.passwordauth }}"            

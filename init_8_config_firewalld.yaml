@@ -1,0 +1,7 @@
+- name: Configure Firewalld for Centos 7
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: su
+  roles:
+    - init_8_config_firewalld

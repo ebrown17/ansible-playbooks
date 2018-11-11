@@ -1,0 +1,10 @@
+- name: Configure Users in group prod-users
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: su
+  tags: prod-users
+  vars_files:
+  - user_vars/user_passwords/prod_user_info.yaml
+  roles:
+    - init_4_config_users

@@ -1,0 +1,12 @@
+SyslogFacility AUTHPRIV
+PermitRootLogin no
+AuthorizedKeysFile /etc/ssh/authorized_keys/%u.pub
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+GSSAPIAuthentication no
+GSSAPICleanupCredentials no
+UsePAM yes
+AllowAgentForwarding yes
+X11Forwarding yes
+AllowGroups ansible
+Subsystem sftp /usr/libexec/openssh/sftp-server

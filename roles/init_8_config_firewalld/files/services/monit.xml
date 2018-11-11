@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Monit</short>
+  <description>Monit is a daemon running and monitoring system processes.</description>
+  <port protocol="tcp" port="2812"/>
+</service>

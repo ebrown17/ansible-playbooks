@@ -1,0 +1,32 @@
+- name: firewalld print vars for host {{ inventory_hostname }} Groups:{{ group_names }}
+  debug:
+    msg: '{{firewalld_zone}}'
+
+- name: Configure Firewalld  
+  block:
+    - name: Enable firewalld
+      systemd:
+        name: firewalld
+        state: started
+        enabled: True
+        daemon_reload: yes
+
+    - name: Disable public zone
+      firewalld:
+        zone: public
+        permanent: True
+        state: disabled
+
+    - name: Enable {{ firewalld_zone }} zone
+      firewalld:
+        zone: '{{ firewalld_zone }}'
+        permanent: True
+        state: enabled
+
+    - name: Set {{ firewalld_zone }} as default policy
+      command: firewall-cmd --set-default-zone={{ firewalld_zone }}
+
+    - name: Reload firewalld
+      systemd:
+        name: firewalld
+        state: restarted

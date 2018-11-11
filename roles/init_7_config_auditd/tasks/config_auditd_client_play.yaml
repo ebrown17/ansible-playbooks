@@ -1,0 +1,52 @@
+- name: Configure Auditd and Audispd
+  block:
+    - name: Configure {{ auditfiles }}/{{ auditdconf }}
+      template:
+        src:  auditd_conf.j2
+        dest: '{{ auditfiles }}/{{ auditdconf }}'
+        backup: yes
+        owner: root
+        group: root
+        mode: '640'
+      notify:
+      - restart auditd            
+    - name: Configure {{ auditfiles }}/{{ auditrules }}
+      template:
+        src:  audit_rules.j2
+        dest: '{{ auditfiles }}/{{ auditrules }}'
+        backup: yes
+        owner: root
+        group: root
+        mode: '640'
+      notify:
+      - restart auditd            
+    - name: Configure {{ auditfiles }}/{{ audispdconf }}
+      template:
+        src:  audispd_conf.j2
+        dest: '{{ auditfiles }}/{{ audispdconf }}'
+        backup: yes
+        owner: root
+        group: root
+        mode: '640'
+      notify:
+      - restart auditd            
+    - name: Configure {{ auditfiles }}/{{ audispremote }}
+      template:
+        src:  audisp_remote.j2
+        dest: '{{ auditfiles }}/{{ audispremote }}'
+        backup: yes
+        owner: root
+        group: root
+        mode: '640'
+      notify:
+      - restart auditd            
+    - name: Configure {{ auditfiles }}/{{ auremote }}
+      template:
+        src:  au_remote.j2
+        dest: '{{ auditfiles }}/{{ auremote }}'
+        backup: yes
+        owner: root
+        group: root
+        mode: '640'
+      notify:
+      - restart auditd

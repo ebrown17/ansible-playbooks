@@ -1,0 +1,19 @@
+- name: Load Firewalld block 
+  block:
+    - name: Copy firewalld service files to {{ firewalld_location }}
+      copy:
+        src: '{{ service_files }}'
+        dest: '{{ firewalld_location }}'
+        mode: 0600
+
+    - name: Copy firewalld zone files to {{ firewalld_location }}
+      copy:
+        src: '{{ zone_files }}'
+        dest: '{{ firewalld_location }}'
+        mode: 0600
+
+    - name: Copy firewalld direct file to {{ firewalld_location }}
+      copy:
+        src: '{{ direct_file }}'
+        dest: '{{ firewalld_location }}'
+        mode: 0600

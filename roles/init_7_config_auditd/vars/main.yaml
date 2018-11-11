@@ -1,0 +1,5 @@
+auditdconf: audit/auditd.conf
+auditrules: audit/rules.d/audit.rules
+audispdconf: audisp/audispd.conf
+audispremote: audisp/audisp-remote.conf
+auremote: audisp/plugins.d/au-remote.conf

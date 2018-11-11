@@ -1,0 +1,9 @@
+- name: Update all packages to latest version
+  hosts: all
+  remote_user: ansible
+  tags: update_all
+  become: true
+  become_method: su
+
+  roles:
+    - update_packages

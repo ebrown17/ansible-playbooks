@@ -1,0 +1,7 @@
+- name: Reset SSHD Config
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: su 
+  roles:
+    - sshd_baseline  

@@ -1,0 +1,45 @@
+# location where user keys are stored
+stored_keys: user_vars/user_keys
+# default firewall zone used if no zone defined in specific group variable
+firewalld_zone: ebrownDEFAULT
+### PRODUCTION SSHD config ###
+authorized_location: /etc/ssh/authorized_keys
+sshd_config: /etc/ssh/sshd_config
+
+### PRODUCTION PAM config ###
+pam_location: /etc/pam.d/
+security_location: /etc/security
+pam_su_name: su  
+pam_system_auth_name: system-auth
+pam_password_auth_name: password-auth
+
+### PRODUCTION SUDOERS config ###
+sudoers_location: /etc/sudoers
+
+### PRODUCTION AUDITD config ###
+remote_audit_server: 'NOT YET DETERMINED'
+auditfiles: /etc
+
+### PRODUCTION FIREWALLD config ###
+firewalld_location: /etc/firewalld
+
+### TEST FIREWALLD config ###
+#firewalld_location: /home/ansible/Ansible-Playbooks/new_top_level/test_files/firewalld
+
+### TEST AUDITD config ### 
+# remote_audit_server: '148.165.12.47'
+# auditfiles: /home/ansible/Ansible-Playbooks/new_top_level/test_files
+
+### TEST SSHD config ### 
+# authorized_location: /home/ansible/Ansible-Playbooks/new_top_level/test_files/authorized_keys
+# sshd_config: /home/ansible/Ansible-Playbooks/new_top_level/test_files/sshd_config_test
+
+### TEST PAM config ###
+# pam_location: /home/ansible/Ansible-Playbooks/new_top_level/test_files/
+# security_location: /home/ansible/Ansible-Playbooks/new_top_level/test_files
+# pam_su_name: pamtestsu
+# pam_system_auth_name: pamtestsys
+# pam_password_auth_name: pamtestpass
+
+### TEST SUDOERS config ###
+# sudoers_location:  /home/ansible/Ansible-Playbooks/new_top_level/test_files/sudoerstest    

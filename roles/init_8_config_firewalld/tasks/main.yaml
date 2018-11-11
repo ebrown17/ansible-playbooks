@@ -1,0 +1,2 @@
+- include: load_firewalld_configs_play.yaml
+- include: config_and_start_firewalld_play.yaml

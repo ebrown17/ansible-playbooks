@@ -1,0 +1,12 @@
+- name: Configure SSH rules for users in group prod-users
+  hosts: all
+  remote_user: ansible
+  tags: prod-users
+  become: true
+  become_method: su
+  vars:
+    - usergroups: prod-users
+  vars_files:
+  - user_vars/user_passwords/prod_user_info.yaml
+  roles:
+    - init_6_config_ssh

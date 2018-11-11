@@ -1,0 +1,20 @@
+- name: Update packages block
+  block:
+    - name: Running 'Yum update -y *' giving yum 25 min to complete 
+      yum: 
+        name: '*' 
+        state: latest
+        update_cache: yes
+      async: 1500
+      poll: 0
+      register: yum_sleeper
+
+    - name: 'YUM - Check if completed for: {{ inventory_hostname }}'
+      async_status:
+        jid: "{{ yum_sleeper.ansible_job_id }}"
+      register: job_result
+      delay: 15
+      until: job_result.finished
+      retries: 100
+
+  when: ansible_distribution == 'CentOS'

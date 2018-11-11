@@ -1,0 +1,2 @@
+- include: install_latest_auditd_play.yaml
+- include: config_auditd_client_play.yaml

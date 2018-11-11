@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Auditd</short>
+  <description>Port needed for Auditd server.</description>
+  <port protocol="tcp" port="60"/>
+</service>

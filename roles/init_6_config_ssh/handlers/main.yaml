@@ -1,0 +1,9 @@
+# TEST
+- name: restart sshd
+  debug:
+    msg: 'Restart SSHD called'
+# PRODUCTION    
+#- name: restart sshd
+#      service:
+#        name: SSHD
+#        state: restarted    

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Splunk Forwarder Ports</short>
+  <description>Required Spunk ports for forwarders</description>
+  <port protocol="tcp" port="8089"/>
+  <port protocol="tcp" port="8191"/>
+  <port protocol="tcp" port="8000"/>
+  <port protocol="tcp" port="9997"/>
+</service>

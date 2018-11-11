@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone>
+	<short>CSE Default</short>
+	<description>Default rules for basic CSE developer functionality</description>
+	<service name="ssh"/>
+	<service name="postgresql"/>
+	<service name="monit"/>
+	<service name="splunkd"/>
+	<service name="http"/>
+	<service name="auditd"/>
+</zone>

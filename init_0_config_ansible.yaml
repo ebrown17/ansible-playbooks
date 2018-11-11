@@ -1,0 +1,21 @@
+- name: Configure system to be managed by Ansible
+  hosts: all
+  remote_user: root
+  vars_files:
+    - user_vars/user_passwords/ansible_user_info.yaml
+    - user_vars/user_passwords/root_user_info.yaml
+  roles:
+    - init_0_config_ansible
+
+- name: Configure SSH rules for ansible
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: su
+  vars:
+    - usergroups: ansible
+  vars_files:
+    - user_vars/user_passwords/ansible_user_info.yaml
+  roles:
+    - init_6_config_ssh     
+
