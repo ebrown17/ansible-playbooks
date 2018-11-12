@@ -1,21 +1,31 @@
 - name: Configure system to be managed by Ansible
   hosts: all
-  remote_user: root
+  remote_user: ec2-user
+  become: true
+  become_method: sudo
   vars_files:
     - user_vars/user_passwords/ansible_user_info.yaml
-    - user_vars/user_passwords/root_user_info.yaml
   roles:
     - init_0_config_ansible
 
+- name: Update root user password
+  hosts: all
+  remote_user: ec2-user
+  become: true
+  become_method: sudo
+  vars_files:
+    - user_vars/user_passwords/root_user_info.yaml
+  roles:
+    - init_4_config_users
+
 - name: Configure SSH rules for ansible
   hosts: all
-  remote_user: ansible
+  remote_user: ec2-user
   become: true
-  become_method: su
+  become_method: sudo
   vars:
     - usergroups: ansible
   vars_files:
     - user_vars/user_passwords/ansible_user_info.yaml
   roles:
-    - init_6_config_ssh     
-
+    - init_6_config_ssh

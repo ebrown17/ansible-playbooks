@@ -1,7 +1,7 @@
 # location where user keys are stored
 stored_keys: user_vars/user_keys
 # default firewall zone used if no zone defined in specific group variable
-firewalld_zone: ebrownDEFAULT
+firewalld_zone: ebrownDefault
 ### PRODUCTION SSHD config ###
 authorized_location: /etc/ssh/authorized_keys
 sshd_config: /etc/ssh/sshd_config
@@ -17,7 +17,7 @@ pam_password_auth_name: password-auth
 sudoers_location: /etc/sudoers
 
 ### PRODUCTION AUDITD config ###
-remote_audit_server: 'NOT YET DETERMINED'
+#remote_audit_server: 'NOT YET DETERMINED'
 auditfiles: /etc
 
 ### PRODUCTION FIREWALLD config ###
@@ -27,7 +27,7 @@ firewalld_location: /etc/firewalld
 #firewalld_location: /home/ansible/Ansible-Playbooks/new_top_level/test_files/firewalld
 
 ### TEST AUDITD config ### 
-# remote_audit_server: '148.165.12.47'
+remote_audit_server: 'localhost'
 # auditfiles: /home/ansible/Ansible-Playbooks/new_top_level/test_files
 
 ### TEST SSHD config ### 

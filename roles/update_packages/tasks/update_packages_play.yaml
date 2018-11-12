@@ -16,5 +16,3 @@
       delay: 15
       until: job_result.finished
       retries: 100
-
-  when: ansible_distribution == 'CentOS'

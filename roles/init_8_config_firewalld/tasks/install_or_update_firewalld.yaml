@@ -1,0 +1,10 @@
+- name: Install or update firewalld
+  yum:
+    name:
+      - firewalld
+    state: latest
+  register: result
+
+- name: Print result from
+  debug:
+    msg:  "{{result.results}}"   

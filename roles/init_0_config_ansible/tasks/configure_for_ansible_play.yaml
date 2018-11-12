@@ -1,6 +1,6 @@
 - name: Required steps to configure machine to be managed by Ansible
   block:
-    - name: Create Ansible's group 
+    - name: Create Ansible's group
       group:
         name: '{{ users.ansible.group }}'
         state: present
@@ -8,7 +8,7 @@
     - name: Create Ansible user with password and put in group
       user:
         append: true
-        comment: '{{ username }} created by ansible'            
+        comment: '{{ username }} created by ansible'
         groups: '{{ group }}'
         name: '{{ username }}'
         password: '{{ password }}'
@@ -17,16 +17,6 @@
         group: '{{ users.ansible.group }}'
         password: '{{ users.ansible.password }}'
         username: '{{ users.ansible.username }}'
-
-    - name: Update root password
-      user:
-        append: true
-        comment: 'updated by ansible'
-        name: '{{ username }}'            
-        password: '{{ password }}'
-      vars:
-        password: '{{ users.root.password }}'
-        username: '{{ users.root.username }}'
 
     - name: Add default sshd_config with ansible allowed
       template:
