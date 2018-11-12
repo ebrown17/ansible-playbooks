@@ -1,4 +1,8 @@
+{% if inventory_hostname in groups['audit-server']  %}
+remote_server = 
+{% else %}
 remote_server = {{ remote_audit_server }}
+{% endif %}
 port = 60
 transport = tcp
 queue_file = /var/spool/audit/remote.log

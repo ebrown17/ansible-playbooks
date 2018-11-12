@@ -1,4 +1,8 @@
+{% if inventory_hostname in groups['audit-server']  %}
+active = no
+{% else %}
 active = yes
+{% endif %}
 direction = out
 path = /sbin/audisp-remote
 type = always

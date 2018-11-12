@@ -19,5 +19,8 @@
 [ansible]
 localhost
 
+[audit-server]
+localhost
+
 [test-servers]
 
