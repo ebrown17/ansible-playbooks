@@ -17,13 +17,3 @@
         group: '{{ users.ansible.group }}'
         password: '{{ users.ansible.password }}'
         username: '{{ users.ansible.username }}'
-
-    - name: Add default sshd_config with ansible allowed
-      template:
-        src:  '{{ ssh_ansible_config }}'
-        dest: '{{ sshd_config }}'
-        backup: yes
-        owner: root
-        group: root
-        mode: '600'
-        validate: '/usr/sbin/sshd -T -f %s'

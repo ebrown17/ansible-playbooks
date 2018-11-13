@@ -1,12 +1,2 @@
-rules:
-  sudorules: |
-    ## Networking
-    Cmnd_Alias NETWORKING = /sbin/route, /sbin/ifconfig, /bin/ping
-    ## Services
-    Cmnd_Alias SERVICES = /sbin/service, /usr/bin/systemctl start, /usr/bin/systemctl stop, /usr/bin/systemctl reload, /usr/bin/systemctl restart, /usr/bin/systemctl status, /usr/bin/systemctl enable, /usr/bin/systemctl disable
-    ## Updating the locate database
-    Cmnd_Alias LOCATE = /usr/bin/updatedb
-    # users in prod-users can run all commands with sudo; requires password
-    %prod-users  ALL=(ALL)       ALL
-    # ANSIBLE can run all commands with sudo; requires password
-    ansible ALL=(ALL)   ALL  
+sudorules:
+    - '%prod-users  ALL=(ALL)       ALL'

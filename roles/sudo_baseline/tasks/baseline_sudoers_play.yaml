@@ -1,0 +1,8 @@
+- name: 'Write sudo group rules to sudoers on visudo validation'
+  template:
+    src: '{{ sudoers_config }}'
+    dest: '{{ sudoers_location }}'
+    owner: root
+    group: root
+    mode: '600'
+    validate: /usr/sbin/visudo -cf %s

@@ -19,7 +19,7 @@
         module_path: '{{ item.module_path }}'
         module_arguments: '{{ item.module_arguments }}'
       with_items:
-        - "{{ pam.global.systemauth }}"
+        - "{{ systemauth }}"
 
     - name: 'Add password-auth rule for auditd'
       pamd:
@@ -39,4 +39,4 @@
         module_path: '{{ item.module_path }}'
         module_arguments: '{{ item.module_arguments }}'
       with_items:
-        - "{{ pam.global.passwordauth }}"            
+        - "{{ passwordauth }}"            

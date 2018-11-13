@@ -1,0 +1,8 @@
+- name: Test listed roles
+  hosts: all
+  remote_user: root
+  become: false
+  become_method: sudo
+  roles:
+    - sudo_baseline
+    - init_3_config_sudo

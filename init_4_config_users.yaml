@@ -2,7 +2,7 @@
   hosts: all
   remote_user: ansible
   become: true
-  become_method: su
+  become_method: sudo
   tags: prod-users
   vars_files:
   - user_vars/user_passwords/prod_user_info.yaml

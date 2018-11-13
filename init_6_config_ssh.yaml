@@ -3,7 +3,7 @@
   remote_user: ansible
   tags: prod-users
   become: true
-  become_method: su
+  become_method: sudo
   vars:
     - usergroups: prod-users
   vars_files:

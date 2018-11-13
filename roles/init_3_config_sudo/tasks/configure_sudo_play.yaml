@@ -1,18 +1,8 @@
-- name: Print listed sudo rules
-  debug:
-    msg: 'Group: {{ group }} Rules: {{ rule }} '
-  vars:
-    group: '{{ item.key }}'
-    rule: '{{ item.value }}'
-  with_dict: '{{ rules }}'
-
-- name: Configure sudo rules
-  block:
-    - name: Write sudo group rules to sudoers on visudo validation
-      blockinfile:
-        block: '{{ item }}'
-        insertafter: EOF
-        path: '{{sudoers_location}}'
-        state: present
-        validate: /usr/sbin/visudo -cf %s        
-      with_items: '{{ rules.sudorules }}'
+- name: 'Write sudo group rules to sudoers on visudo validation'
+  lineinfile:
+    path: '{{ sudoers_location }}'
+    state: present
+    insertafter: EOF
+    line: '{{ item }}'
+    validate: /usr/sbin/visudo -cf %s
+  with_items: '{{ sudorules }}'

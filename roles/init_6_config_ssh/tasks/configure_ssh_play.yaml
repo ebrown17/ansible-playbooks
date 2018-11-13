@@ -30,6 +30,6 @@
         regexp: '^(AllowGroups(?!.*\b{{ item }}\b).*)$'
         replace: '\1 {{ item }}'
         validate: '/usr/sbin/sshd -T -f %s'
-      with_items: '{{ usergroups }}'     
+      with_items: '{{ usergroups }}'
       notify:
       - restart sshd  

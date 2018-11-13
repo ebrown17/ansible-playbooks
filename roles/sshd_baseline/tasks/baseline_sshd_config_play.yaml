@@ -7,5 +7,3 @@
     group: root
     mode: '600'
     validate: '/usr/sbin/sshd -T -f %s'
-
-  when: ansible_distribution == 'CentOS'

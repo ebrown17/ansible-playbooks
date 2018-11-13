@@ -2,6 +2,6 @@
   hosts: all
   remote_user: ansible
   become: true
-  become_method: su
+  become_method: sudo
   roles:
     - init_7_config_auditd

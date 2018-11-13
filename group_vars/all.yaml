@@ -35,11 +35,11 @@ remote_audit_server: 'localhost'
 # sshd_config: /home/ansible/Ansible-Playbooks/new_top_level/test_files/sshd_config_test
 
 ### TEST PAM config ###
-# pam_location: /home/ansible/Ansible-Playbooks/new_top_level/test_files/
-# security_location: /home/ansible/Ansible-Playbooks/new_top_level/test_files
-# pam_su_name: pamtestsu
+#pam_location: /home/ebrown/git/ansible-playbooks/test_files/
+#security_location: /home/ebrown/git/ansible-playbooks/test_files
+#pam_su_name: pamtestsu
 # pam_system_auth_name: pamtestsys
 # pam_password_auth_name: pamtestpass
 
 ### TEST SUDOERS config ###
-# sudoers_location:  /home/ansible/Ansible-Playbooks/new_top_level/test_files/sudoerstest    
+#sudoers_location:  /home/ebrown/git/ansible-playbooks/test_files/sudoers  

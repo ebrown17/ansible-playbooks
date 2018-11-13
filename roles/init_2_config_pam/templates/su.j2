@@ -1,8 +1,5 @@
 auth      	sufficient pam_rootok.so
-{% for item in pam.prod.su %}
-{{ item.type }} {{ item.control }} {{ item.module_path }} {{ item.module_arguments }}
-{% endfor %}
-{% for item in pam.ansible.su %}
+{% for item in su %}
 {{ item.type }} {{ item.control }} {{ item.module_path }} {{ item.module_arguments }}
 {% endfor %}
 auth       substack system-auth
