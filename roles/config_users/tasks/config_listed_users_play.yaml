@@ -9,7 +9,7 @@
         password: '{{ password }}'
         state: present
       vars:
-        group: '{{ item.value.group }}'
+        group: '{{ groupname }}'
         password: '{{ item.value.password }}'
         username: '{{ item.value.username }}'
       with_dict: '{{ users }}'
