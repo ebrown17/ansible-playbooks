@@ -1,8 +1,7 @@
-- name: Configure user groups for system
+- name: Configure AUDITD module 
   hosts: all
   remote_user: ansible
   become: true
   become_method: sudo
   roles:
-    - init_1_config_groups
-
+    - config_auditd

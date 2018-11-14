@@ -1,8 +1,8 @@
-- name: Configure Sudo rules 
+- name: Configure Pam module 
   hosts: all
   remote_user: ansible
   become: true
   become_method: sudo
   roles:
-    - init_3_config_sudo
+    - config_pam
 

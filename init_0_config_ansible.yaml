@@ -1,24 +1,14 @@
-- name: Update root user password
-  hosts: all
-  remote_user: ec2-user
-  become: true
-  become_method: sudo
-  vars_files:
-    - user_vars/user_passwords/root_user_info.yaml
-  roles:
-    - init_4_config_users
-
 - name: Configure system to be managed by Ansible
   hosts: all
   remote_user: ec2-user
   become: true
   become_method: sudo
-  vars:
-  - usergroups: ansible
   vars_files:
     - user_vars/user_passwords/ansible_user_info.yaml
   roles:
-    - init_0_config_ansible
     - sshd_baseline
     - sudo_baseline
-    - init_6_config_ssh
+    - config_user_group
+    - config_users
+    - config_user_ssh
+

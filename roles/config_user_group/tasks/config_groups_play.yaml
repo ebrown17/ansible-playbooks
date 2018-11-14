@@ -1,0 +1,4 @@
+- name: Create Group {{ groupname }}
+  group:
+    name: '{{ groupname }}'
+    state: present

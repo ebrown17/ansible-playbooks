@@ -1,3 +1,4 @@
+groupname: root
 users:
-  root: {group: root, password: $6$rounds=656000$j39XKSkZLRXbd/SH$ju15FAAP8v701AVWrvi0WaXG5d9qgQavrfQqCMyTrRKHGtMU8.5l.EmG2nD/gfkj5GtL46j2sgj09JZmVHKMe.,
+  root: {password: $6$rounds=656000$j39XKSkZLRXbd/SH$ju15FAAP8v701AVWrvi0WaXG5d9qgQavrfQqCMyTrRKHGtMU8.5l.EmG2nD/gfkj5GtL46j2sgj09JZmVHKMe.,
     username: root}

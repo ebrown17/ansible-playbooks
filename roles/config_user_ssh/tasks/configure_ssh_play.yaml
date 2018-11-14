@@ -19,7 +19,7 @@
         user: '{{ username }}'
       vars:
         username: '{{ item.value.username }}'        
-        key_location: '{{ stored_keys }}/{{ item.value.group }}/{{ item.value.username }}/{{ item.value.username }}.pub'
+        key_location: '{{ stored_keys }}/{{ groupname }}/{{ item.value.username }}/{{ item.value.username }}.pub'
       with_dict: '{{ users }}'
       notify:
       - restart sshd 
@@ -30,6 +30,6 @@
         regexp: '^(AllowGroups(?!.*\b{{ item }}\b).*)$'
         replace: '\1 {{ item }}'
         validate: '/usr/sbin/sshd -T -f %s'
-      with_items: '{{ usergroups }}'
+      with_items: '{{ groupname }}'
       notify:
       - restart sshd  
