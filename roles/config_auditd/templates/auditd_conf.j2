@@ -22,7 +22,7 @@ disk_full_action = SUSPEND
 disk_error_action = SUSPEND
 use_libwrap = yes
 {% if inventory_hostname in groups['audit-server']  %}
-tcp_listen_port =60
+tcp_listen_port = 60
 tcp_listen_queue = 25
 tcp_max_per_addr = 1
 {% else %}

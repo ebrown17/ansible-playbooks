@@ -4,11 +4,9 @@
 # plays are imported in the order they should be run
 # uncommented means role is configured
 - import_playbook: init_0_config_ansible.yaml
-- import_playbook: init_1_config_groups.yaml
-- import_playbook: init_2_config_pam.yaml
-- import_playbook: init_3_config_sudo.yaml
-- import_playbook: init_4_config_users.yaml
-- import_playbook: init_5_update_packages.yaml
-- import_playbook: init_6_config_ssh.yaml
-- import_playbook: init_7_config_auditd.yaml
-- import_playbook: init_8_config_firewalld.yaml
+- import_playbook: init_1_config_pam.yaml
+- import_playbook: init_2_config_sudo.yaml
+- import_playbook: init_3_config_users.yaml
+- import_playbook: init_4_update_packages.yaml
+- import_playbook: init_5_config_auditd.yaml
+- import_playbook: init_6_config_firewalld.yaml
