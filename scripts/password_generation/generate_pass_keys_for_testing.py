@@ -32,10 +32,9 @@ def update_group(pw,grpname):
 	with open(user_file_list.get(grpname)) as f:
 		yaml_users_list = yaml.load(f)
 
-	for key,users_list in yaml_users_list.items():
-		for user,user_info in users_list.items():					
-			users_list.update({user:{'username':user,'password':pw,'group':grpname}})
-	
+	for user,user_info in yaml_users_list.get("users").items():
+		user_info.update({'username':user,'password':pw})
+
 	return yaml_users_list
 		
 def update_yaml_file(yaml_change):
@@ -43,6 +42,7 @@ def update_yaml_file(yaml_change):
 
 	with open(file_to_update, 'w') as f:
 		yaml.dump(yaml_change, f)	
+
 
 ################# start of actual script ####################
 verify_pass = False
@@ -60,6 +60,7 @@ for group, file in user_file_list.items():
 	groupname = group
 	print "updating "+groupname + " passwords and rsa keys "
 	yaml_users_list = update_group(hashedpw,groupname)
+	#sys.exit(0)
 	print "Writing changes to file"
 	update_yaml_file(yaml_users_list)
 	if "root" in groupname:
@@ -67,25 +68,25 @@ for group, file in user_file_list.items():
 
 	date = datetime.now().strftime("%c")
 	print yaml_users_list
-	for key,users_list in yaml_users_list.items():
+	groupname = yaml_users_list.get("groupname")
+	for user,user_info in yaml_users_list.get("users").items():
 
-		for user,user_info in users_list.items():
-			username = user_info["username"]
-			groupname = user_info["group"]
-			print username + " " + groupname
+		username = user_info["username"]			
+		print username + " " + groupname
 
-			print "Generating key for " + username		
-			file_location = key_file_location+groupname+"/"+username+"/"
-			call(["mkdir","-p",file_location])
+		print "Generating key for " + username
 
-			call(["ssh-keygen", "-b", "8192", "-a", "100", "-N",password,"-f",file_location+username,"-C","Generated for group " + groupname+"  user "+username + " on " + date])
-			pass_phrase = call(["ssh-keygen", "-y", "-P",password,"-f", file_location+username],stdout=open(os.devnull, 'wb'))
+		file_location = key_file_location+groupname+"/"+username+"/"
+		call(["mkdir","-p",file_location])
 
-			if pass_phrase == 0:
-				print "Passsphrase was created correctly"
-				print "Keys created at: " + file_location
-			else:
-				print "ERROR: Passsphrase was not created  correctly for " + username
-				sys.exit(0)
+		call(["ssh-keygen", "-b", "8192", "-a", "100", "-N",password,"-f",file_location+username,"-C","Generated for group " + groupname+"  user "+username + " on " + date])
+		pass_phrase = call(["ssh-keygen", "-y", "-P",password,"-f", file_location+username],stdout=open(os.devnull, 'wb'))
+
+		if pass_phrase == 0:
+			print "Passsphrase was created correctly"
+			print "Keys created at: " + file_location
+		else:
+			print "ERROR: Passsphrase was not created  correctly for " + username
+			sys.exit(0)
 
 print "Generation complete... "	
