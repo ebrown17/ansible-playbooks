@@ -20,8 +20,8 @@ admin_space_left = 50
 admin_space_left_action = SUSPEND
 disk_full_action = SUSPEND
 disk_error_action = SUSPEND
-use_libwrap = yes
 {% if inventory_hostname in groups['audit-server']  %}
+use_libwrap = no
 tcp_listen_port = 60
 tcp_listen_queue = 25
 tcp_max_per_addr = 1
@@ -29,7 +29,6 @@ tcp_max_per_addr = 1
 tcp_listen_queue = 5
 tcp_max_per_addr = 1
 {% endif %}
-tcp_max_per_addr = 1
 tcp_client_max_idle = 0
 enable_krb5 = no
 krb5_principal = auditd
