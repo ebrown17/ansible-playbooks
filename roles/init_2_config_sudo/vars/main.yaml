@@ -1,2 +1,0 @@
-sudorules:
-    - '%prod-users  ALL=(ALL)       ALL'

@@ -13,7 +13,7 @@ from subprocess import check_output;
 from datetime import datetime;
  
 # location of user info yaml file
-test_user_file="../../user_vars/user_passwords/test_user_info.yaml"
+test_user_file="../../user_vars/user_info/test_user_info.yaml"
 
 
 user_file_list = {"test-users":test_user_file}

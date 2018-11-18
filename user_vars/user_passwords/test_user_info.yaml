@@ -1,4 +1,0 @@
-groupname: test-users
-users:
-  testuser1: {password: $6$rounds=656000$Jw40cNc0A9vuXRUM$cfoiQv6JbgXeug8e3RlexU0gZ5Tcg/DiYj4Ec9ij9uusF16NgxSuvU926iQrcZkzvn8EpYcgBw9iCVi5.lxJ.0,
-    username: testuser1}

@@ -1,8 +1,0 @@
-groupname: prod-users
-users:
-  ebrown: {password: $6$rounds=656000$j39XKSkZLRXbd/SH$ju15FAAP8v701AVWrvi0WaXG5d9qgQavrfQqCMyTrRKHGtMU8.5l.EmG2nD/gfkj5GtL46j2sgj09JZmVHKMe.,
-    username: ebrown}
-  ec2-user: {password: $6$rounds=656000$j39XKSkZLRXbd/SH$ju15FAAP8v701AVWrvi0WaXG5d9qgQavrfQqCMyTrRKHGtMU8.5l.EmG2nD/gfkj5GtL46j2sgj09JZmVHKMe.,
-    username: ec2-user}
-  testuser1: {password: $6$rounds=656000$j39XKSkZLRXbd/SH$ju15FAAP8v701AVWrvi0WaXG5d9qgQavrfQqCMyTrRKHGtMU8.5l.EmG2nD/gfkj5GtL46j2sgj09JZmVHKMe.,
-    username: testuser1}   

@@ -1,0 +1,11 @@
+groupname: prod-users
+users:
+  produser1: {password: $6$rounds=656000$GI1ZmiTZCQLVSK9.$EYKuP35nENjqonQf9oIbCQmt5lvZaXqT7E6n7zvaqssntpOu8OmMoqa9r91EwkYWGeRfb4KjN3jF2Mriw5Iel/,
+    username: produser1}
+  produser2: {password: $6$rounds=656000$GI1ZmiTZCQLVSK9.$EYKuP35nENjqonQf9oIbCQmt5lvZaXqT7E6n7zvaqssntpOu8OmMoqa9r91EwkYWGeRfb4KjN3jF2Mriw5Iel/,
+    username: produser2}
+  produser3: {password: $6$rounds=656000$GI1ZmiTZCQLVSK9.$EYKuP35nENjqonQf9oIbCQmt5lvZaXqT7E6n7zvaqssntpOu8OmMoqa9r91EwkYWGeRfb4KjN3jF2Mriw5Iel/,
+    username: produser3}
+sudorules:
+    # prod-users can run all commands with sudo; requires password
+    - '%prod-users  ALL=(ALL)       ALL'

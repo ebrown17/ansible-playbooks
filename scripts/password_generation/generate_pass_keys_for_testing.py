@@ -13,11 +13,13 @@ from subprocess import check_output;
 from datetime import datetime;
  
 # location of user info yaml file
-prod_user_file="../../user_vars/user_passwords/prod_user_info.yaml"
-ansible_user_file="../../user_vars/user_passwords/ansible_user_info.yaml"
-root_user_file="../../user_vars/user_passwords/root_user_info.yaml"
+prod_users_file="../../user_vars/user_info/prod_users_info.yaml"
+dev_users_file="../../user_vars/user_info/dev_users_info.yaml"
+ec2_user_file="../../user_vars/user_info/ec2_user_info.yaml"
+ansible_user_file="../../user_vars/user_info/ansible_user_info.yaml"
+root_user_file="../../user_vars/user_info/root_user_info.yaml"
 
-user_file_list = {"prod-users":prod_user_file,"ansible":ansible_user_file,"root":root_user_file}
+user_file_list = {"prod-users":prod_users_file,"dev-users":dev_users_file,"ec2-user":ec2_user_file,"ansible":ansible_user_file,"root":root_user_file}
 
 
 # location to store keys; file seperation must be appended to this so "/fullpath/folder/"
@@ -79,10 +81,16 @@ for group, file in user_file_list.items():
 		file_location = key_file_location+groupname+"/"+username+"/"
 		call(["mkdir","-p",file_location])
 
-		call(["ssh-keygen", "-b", "8192", "-a", "100", "-N",password,"-f",file_location+username,"-C","Generated for group " + groupname+"  user "+username + " on " + date])
-		pass_phrase = call(["ssh-keygen", "-y", "-P",password,"-f", file_location+username],stdout=open(os.devnull, 'wb'))
+		#prod users should will not have a passphrase to allow sshing to themelves
+		if "prod-users" == groupname:
+			passphrase=""
+		else:
+			passphrase=password
+			
+		call(["ssh-keygen", "-b", "8192", "-a", "100", "-N",passphrase,"-f",file_location+username,"-C","Generated for group " + groupname+"  user "+username + " on " + date])
+		passphrase_check = call(["ssh-keygen", "-y", "-P",passphrase,"-f", file_location+username],stdout=open(os.devnull, 'wb'))
 
-		if pass_phrase == 0:
+		if passphrase_check == 0:
 			print "Passsphrase was created correctly"
 			print "Keys created at: " + file_location
 		else:

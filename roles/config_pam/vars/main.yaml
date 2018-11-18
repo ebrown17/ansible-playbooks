@@ -3,10 +3,18 @@ su:
   - { type: auth, control: '[success=2 default=ignore]', module_path: pam_succeed_if.so, module_arguments: 'use_uid user notingroup ansible' }
   - { type: auth, control: required, module_path: pam_wheel.so, module_arguments: 'use_uid group=ansible'}
   - { type: auth, control: required, module_path: pam_listfile.so, module_arguments: 'item=user sense=allow onerr=fail file=/etc/security/su-ansible-access'}
+  # ec2
+  - { type: auth, control: '[success=2 default=ignore]', module_path: pam_succeed_if.so, module_arguments: 'use_uid user notingroup ec2-user' }
+  - { type: auth, control: required, module_path: pam_wheel.so, module_arguments: 'use_uid group=ec2-user'}
+  - { type: auth, control: required, module_path: pam_listfile.so, module_arguments: 'item=user sense=allow onerr=fail file=/etc/security/su-ec2-access'}  
   # prod users
   - { type: auth, control: '[success=2 default=ignore]', module_path: pam_succeed_if.so, module_arguments: 'use_uid user notingroup prod-users' }
   - { type: auth, control: required, module_path: pam_wheel.so, module_arguments: 'use_uid group=prod-users'}           
   - { type: auth, control: required, module_path: pam_listfile.so, module_arguments: 'item=user sense=allow onerr=fail file=/etc/security/su-prod-access'}
+  # dev users
+  - { type: auth, control: '[success=2 default=ignore]', module_path: pam_succeed_if.so, module_arguments: 'use_uid user notingroup dev-users' }
+  - { type: auth, control: required, module_path: pam_wheel.so, module_arguments: 'use_uid group=dev-users'}           
+  - { type: auth, control: required, module_path: pam_listfile.so, module_arguments: 'item=user sense=allow onerr=fail file=/etc/security/su-dev-access'}  
      
 systemauth:
   - { type: session, control: required, module_path: pam_tty_audit.so, module_arguments: 'enable=*' }
@@ -17,6 +25,9 @@ passwordauth:
 securityfiles:
   su-ansible-access: |
     root
+  su-ec2-access: |
+        
   su-prod-access: |
     prod-users
-    root
+  su-dev-access: |
+    dev-users   

@@ -4,7 +4,7 @@
   become: true
   become_method: sudo
   vars_files:
-    - user_vars/user_passwords/ansible_user_info.yaml
+    - user_vars/user_info/ansible_user_info.yaml
   roles:
     - sshd_baseline
     - sudo_baseline
