@@ -1,13 +1,13 @@
-- name: Add Users to {{ pam_location }}/{{ pam_system_auth_name }}
+- name: Add Users to {{ pam_location }}{{ pam_system_auth_name }}
   replace:        
-    dest: '{{ pam_location }}/{{ pam_system_auth_name }}'
-    regexp: '^(session    required pam_tty_audit.so disable=* enable=(?!.*\b{{ item }}\b).*)$'
-    replace: '\1 {{ item }}'
+    dest: '{{ pam_location }}{{ pam_system_auth_name }}'
+    regexp: '^(session.*pam_tty_audit.so.*enable=(?!.*\b{{ item.value.username }}\b).*)$'
+    replace: '\1,{{ item.value.username }}'
   with_dict: '{{ users }}'
 
- - name: Add Users to {{ pam_location }}/{{ pam_password_auth_name }}
+- name: Add Users to {{ pam_location }}{{ pam_password_auth_name }}
   replace:        
-    dest: '{{ pam_location }}/{{ pam_password_auth_name }}'
-    regexp: '^(session    required pam_tty_audit.so disable=* enable=(?!.*\b{{ item }}\b).*)$'
-    replace: '\1 {{ item }}'
+    dest: '{{ pam_location }}{{ pam_password_auth_name }}'
+    regexp: '^(session.*pam_tty_audit.so.*enable=(?!.*\b{{ item.value.username }}\b).*)$'
+    replace: '\1,{{ item.value.username }}'
   with_dict: '{{ users }}' 

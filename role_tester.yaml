@@ -1,8 +1,9 @@
 - name: Test listed roles
   hosts: all
-  remote_user: root
+  remote_user: ebrown
   become: false
   become_method: sudo
+  vars_files:
+  - user_vars/user_info/prod_users_info.yaml
   roles:
-    - sudo_baseline
-    - init_3_config_sudo
+    - config_user_tty_audit

@@ -17,7 +17,7 @@ pam_password_auth_name: password-auth
 sudoers_location: /etc/sudoers
 
 ### PRODUCTION AUDITD config ###
-#remote_audit_server: 'NOT YET DETERMINED'
+remote_audit_server: 'localhost'
 auditfiles: /etc
 
 ### PRODUCTION FIREWALLD config ###
@@ -27,7 +27,7 @@ firewalld_location: /etc/firewalld
 #firewalld_location: /home/ansible/Ansible-Playbooks/new_top_level/test_files/firewalld
 
 ### TEST AUDITD config ### 
-remote_audit_server: 'localhost'
+#remote_audit_server: 'localhost'
 # auditfiles: /home/ansible/Ansible-Playbooks/new_top_level/test_files
 
 ### TEST SSHD config ### 
@@ -35,11 +35,11 @@ remote_audit_server: 'localhost'
 # sshd_config: /home/ansible/Ansible-Playbooks/new_top_level/test_files/sshd_config_test
 
 ### TEST PAM config ###
-#pam_location: /home/ebrown/git/ansible-playbooks/test_files/
+#pam_location: /home/ebrown/git/ansible-playbooks/test_files/pam.d/
 #security_location: /home/ebrown/git/ansible-playbooks/test_files
 #pam_su_name: pamtestsu
-# pam_system_auth_name: pamtestsys
-# pam_password_auth_name: pamtestpass
+#pam_system_auth_name: pamtestsys
+#pam_password_auth_name: pamtestpass
 
 ### TEST SUDOERS config ###
 #sudoers_location:  /home/ebrown/git/ansible-playbooks/test_files/sudoers  
