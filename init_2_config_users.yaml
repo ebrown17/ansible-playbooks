@@ -3,6 +3,7 @@
   remote_user: ansible
   become: true
   become_method: sudo
+  tags: root
   vars_files:
     - user_vars/user_info/root_user_info.yaml
   roles:
@@ -20,7 +21,8 @@
     - config_user_group
     - config_users
     - config_sudo
-    - config_user_ssh      
+    - config_user_ssh
+    - config_user_tty_audit
 
 - name: Configure Users in group prod-users
   hosts: all
@@ -35,6 +37,7 @@
     - config_users
     - config_sudo
     - config_user_ssh
+    - config_user_tty_audit
 
 - name: Configure Users in group dev-users
   hosts: all
@@ -48,4 +51,5 @@
     - config_user_group
     - config_users
     - config_sudo
-    - config_user_ssh    
+    - config_user_ssh
+    - config_user_tty_audit   

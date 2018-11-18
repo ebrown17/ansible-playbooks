@@ -17,16 +17,16 @@ su:
   - { type: auth, control: required, module_path: pam_listfile.so, module_arguments: 'item=user sense=allow onerr=fail file=/etc/security/su-dev-access'}  
      
 systemauth:
-  - { type: session, control: required, module_path: pam_tty_audit.so, module_arguments: 'enable=*' }
+  - { type: session, control: required, module_path: pam_tty_audit.so, module_arguments: 'disable=* enable=root,ansible' }
 
 passwordauth:
-  - { type: session, control: required, module_path: pam_tty_audit.so, module_arguments: 'enable=*' }
+  - { type: session, control: required, module_path: pam_tty_audit.so, module_arguments: 'disable=* enable=root,ansible' }
   
 securityfiles:
   su-ansible-access: |
     root
   su-ec2-access: |
-        
+    ec2-user      
   su-prod-access: |
     prod-users
   su-dev-access: |
