@@ -14,7 +14,11 @@ su:
   # dev users
   - { type: auth, control: '[success=2 default=ignore]', module_path: pam_succeed_if.so, module_arguments: 'use_uid user notingroup dev-users' }
   - { type: auth, control: required, module_path: pam_wheel.so, module_arguments: 'use_uid group=dev-users'}           
-  - { type: auth, control: required, module_path: pam_listfile.so, module_arguments: 'item=user sense=allow onerr=fail file=/etc/security/su-dev-access'}  
+  - { type: auth, control: required, module_path: pam_listfile.so, module_arguments: 'item=user sense=allow onerr=fail file=/etc/security/su-dev-access'}
+    # maint users
+  - { type: auth, control: '[success=2 default=ignore]', module_path: pam_succeed_if.so, module_arguments: 'use_uid user notingroup maint-users' }
+  - { type: auth, control: required, module_path: pam_wheel.so, module_arguments: 'use_uid group=maint-users'}           
+  - { type: auth, control: required, module_path: pam_listfile.so, module_arguments: 'item=user sense=allow onerr=fail file=/etc/security/su-maint-access'}  
      
 systemauth:
   - { type: session, control: required, module_path: pam_tty_audit.so, module_arguments: 'disable=* enable=root,ansible' }
@@ -24,10 +28,14 @@ passwordauth:
   
 securityfiles:
   su-ansible-access: |
-    root
+    dev-users
   su-ec2-access: |
-    ec2-user      
+    ec2-user
   su-prod-access: |
     prod-users
   su-dev-access: |
-    dev-users   
+    dev-users
+    prod-users
+  su-maint-access: |
+    maint-users
+    prod-users

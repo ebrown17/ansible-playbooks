@@ -1,1 +1,1 @@
-- include: configure_ssh_play.yaml
+- include: configure_sshd_play.yaml

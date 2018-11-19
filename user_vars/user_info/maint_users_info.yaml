@@ -1,11 +1,11 @@
-groupname: dev-users
+groupname: maint-users
 users:
   devuser1: {password: $6$rounds=656000$GI1ZmiTZCQLVSK9.$EYKuP35nENjqonQf9oIbCQmt5lvZaXqT7E6n7zvaqssntpOu8OmMoqa9r91EwkYWGeRfb4KjN3jF2Mriw5Iel/,
-    username: devuser1}
+    username: maintuser1}
   devuser2: {password: $6$rounds=656000$GI1ZmiTZCQLVSK9.$EYKuP35nENjqonQf9oIbCQmt5lvZaXqT7E6n7zvaqssntpOu8OmMoqa9r91EwkYWGeRfb4KjN3jF2Mriw5Iel/,
-    username: devuser2}
+    username: maintuser2}
   devuser3: {password: $6$rounds=656000$GI1ZmiTZCQLVSK9.$EYKuP35nENjqonQf9oIbCQmt5lvZaXqT7E6n7zvaqssntpOu8OmMoqa9r91EwkYWGeRfb4KjN3jF2Mriw5Iel/,
-    username: devuser3}
+    username: maintuser3}
 sudorules:
-  # dev-users can run all commands with sudo; requires password
-  - '%dev-users  ALL=(ALL)       ALL'
+  # dev-users can only run certain priveledged commands; no password
+  - '%maint-users ALL=NOPASSWD: NETWORKING,SERVICES,LOCATE'

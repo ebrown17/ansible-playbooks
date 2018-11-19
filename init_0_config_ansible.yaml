@@ -6,9 +6,9 @@
   vars_files:
     - user_vars/user_info/ansible_user_info.yaml
   roles:
-    - sshd_baseline
+    - ssh_baseline
     - sudo_baseline
     - config_user_group
-    - config_users
+    - config_user
     - config_user_ssh
 

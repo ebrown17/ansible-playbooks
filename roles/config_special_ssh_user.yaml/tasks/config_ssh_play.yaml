@@ -1,0 +1,21 @@
+- name: Configure special SSH setup per host
+  block:  
+    - name: Create identity directory at  {{ identity_location }}
+      file:
+        path: '{{ identity_location }}'
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'       
+
+    - name: Set custom private key location per user 
+      authorized_key:
+        key: '{{ lookup(''file'', ''{{ key_location }}'') }}'
+        manage_dir: false
+        path: '{{ identity_location }}/{{ username }}'
+        state: present
+        user: '{{ username }}'
+      vars:
+        username: '{{ item.value.username }}'        
+        key_location: '{{ stored_keys }}/{{ groupname }}/{{ item.value.username }}/{{ item.value.username }}'
+      with_dict: '{{ users }}'

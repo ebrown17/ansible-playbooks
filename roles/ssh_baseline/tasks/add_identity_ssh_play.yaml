@@ -1,0 +1,6 @@
+- name: 'Add new identity location for certain users'
+  lineinfile:
+    path: '{{ ssh_config }}'
+    state: present
+    insertafter: EOF
+    line: 'IdentityFile /etc/ssh/identity/%u'

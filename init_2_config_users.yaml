@@ -7,7 +7,7 @@
   vars_files:
     - user_vars/user_info/root_user_info.yaml
   roles:
-    - config_users
+    - config_user
 
 - name: Configure User in group ec2-user
   hosts: all
@@ -19,7 +19,7 @@
   - user_vars/user_info/ec2_user_info.yaml
   roles:
     - config_user_group
-    - config_users
+    - config_user
     - config_sudo
     - config_user_ssh
     - config_user_tty_audit
@@ -34,9 +34,10 @@
   - user_vars/user_info/prod_users_info.yaml
   roles:
     - config_user_group
-    - config_users
+    - config_user
     - config_sudo
     - config_user_ssh
+    - config_special_user_ssh
     - config_user_tty_audit
 
 - name: Configure Users in group dev-users
@@ -49,7 +50,23 @@
   - user_vars/user_info/dev_users_info.yaml
   roles:
     - config_user_group
-    - config_users
+    - config_user
     - config_sudo
     - config_user_ssh
-    - config_user_tty_audit   
+    - config_user_tty_audit
+
+- name: Configure Users in group maint-users
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: sudo
+  tags: maint-users
+  vars_files:
+  - user_vars/user_info/maint_users_info.yaml
+  roles:
+    - config_user_group
+    - config_user
+    - config_sudo
+    - config_user_ssh
+    - config_special_user_ssh
+    - config_user_tty_audit

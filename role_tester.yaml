@@ -1,9 +1,7 @@
 - name: Test listed roles
-  hosts: all
+  hosts: localhost
   remote_user: ebrown
-  become: false
+  become: true
   become_method: sudo
-  vars_files:
-  - user_vars/user_info/prod_users_info.yaml
   roles:
-    - config_user_tty_audit
+    - config_pam

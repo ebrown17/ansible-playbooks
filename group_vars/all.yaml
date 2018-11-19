@@ -4,7 +4,9 @@ stored_keys: user_vars/user_keys
 firewalld_zone: ebrownDefault
 ### PRODUCTION SSHD config ###
 authorized_location: /etc/ssh/authorized_keys
+identity_location: /etc/ssh/identity
 sshd_config: /etc/ssh/sshd_config
+ssh_config: /etc/ssh/ssh_config
 
 ### PRODUCTION PAM config ###
 pam_location: /etc/pam.d/
@@ -35,8 +37,8 @@ firewalld_location: /etc/firewalld
 # sshd_config: /home/ansible/Ansible-Playbooks/new_top_level/test_files/sshd_config_test
 
 ### TEST PAM config ###
-#pam_location: /home/ansible/git/ansible-playbooks/test_files/pam.d/
-#security_location: /home/ansible/git/ansible-playbooks/test_files
+#pam_location: /home/ebrown/git/ansible-playbooks/test_files/pam.d/
+#security_location: /home/ebrown/git/ansible-playbooks/test_files
 #pam_su_name: pamtestsu
 #pam_system_auth_name: pamtestsys
 #pam_password_auth_name: pamtestpass

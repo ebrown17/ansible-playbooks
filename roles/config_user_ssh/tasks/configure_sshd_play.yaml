@@ -1,4 +1,4 @@
-- name: Configure SSH setup per host
+- name: Configure SSHD setup per host
   block:  
     - name: Create authorized_key directory at  {{ authorized_location }}
       file:
@@ -10,7 +10,7 @@
       notify:
       - restart sshd         
 
-    - name: Set public authorized key per user from file {{key_location}}
+    - name: Set public authorized key per user from file {{ stored_keys }}/{{ groupname }}/{{ item.value.username }}/{{ item.value.username }}.pub
       authorized_key:
         key: '{{ lookup(''file'', ''{{ key_location }}'') }}'
         manage_dir: false

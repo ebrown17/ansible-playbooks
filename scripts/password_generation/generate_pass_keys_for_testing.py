@@ -14,12 +14,20 @@ from datetime import datetime;
  
 # location of user info yaml file
 prod_users_file="../../user_vars/user_info/prod_users_info.yaml"
+maint_users_file="../../user_vars/user_info/maint_users_info.yaml"
 dev_users_file="../../user_vars/user_info/dev_users_info.yaml"
 ec2_user_file="../../user_vars/user_info/ec2_user_info.yaml"
 ansible_user_file="../../user_vars/user_info/ansible_user_info.yaml"
 root_user_file="../../user_vars/user_info/root_user_info.yaml"
 
-user_file_list = {"prod-users":prod_users_file,"dev-users":dev_users_file,"ec2-user":ec2_user_file,"ansible":ansible_user_file,"root":root_user_file}
+user_file_list = {
+	"prod-users":prod_users_file,
+	"maint-users":maint_users_file,
+	"dev-users":dev_users_file,
+	"ec2-user":ec2_user_file,
+	"ansible":ansible_user_file,
+	"root":root_user_file
+	}
 
 
 # location to store keys; file seperation must be appended to this so "/fullpath/folder/"
@@ -81,8 +89,8 @@ for group, file in user_file_list.items():
 		file_location = key_file_location+groupname+"/"+username+"/"
 		call(["mkdir","-p",file_location])
 
-		#prod users should will not have a passphrase to allow sshing to themelves
-		if "prod-users" == groupname:
+		#prod and maint users will not have a passphrase to allow sshing to themelves without having to enter key
+		if ("prod-users" == groupname) or ("maint-users" == groupname):
 			passphrase=""
 		else:
 			passphrase=password
