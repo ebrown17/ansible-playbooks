@@ -1,7 +1,15 @@
 - name: Test listed roles
   hosts: localhost
-  remote_user: ebrown
-  become: true
+  remote_user: ansible
+  become: false
   become_method: sudo
-  roles:
-    - config_pam
+  vars_files:
+    - user_vars/user_info/prod_users_info.yaml
+  tasks:
+    - debug:
+        msg: "remote location {{ remote_loc }} file {{ key_location }} "
+      vars:
+        remote_loc: '{{ identity_location }}/{{username}}'
+        username: '{{ item.value.username }}'
+        key_location: '{{ stored_keys }}/{{ groupname }}/{{ item.value.username }}/{{ item.value.username }}'
+      with_dict: '{{ users }}'
