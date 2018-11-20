@@ -21,10 +21,10 @@ su:
   - { type: auth, control: required, module_path: pam_listfile.so, module_arguments: 'item=user sense=allow onerr=fail file=/etc/security/su-maint-access'}  
      
 systemauth:
-  - { type: session, control: required, module_path: pam_tty_audit.so, module_arguments: 'disable=* enable=root, ansible' }
+  - { type: session, control: required, module_path: pam_tty_audit.so, module_arguments: 'disable=* enable=root' }
 
 passwordauth:
-  - { type: session, control: required, module_path: pam_tty_audit.so, module_arguments: 'disable=* enable=root, ansible' }
+  - { type: session, control: required, module_path: pam_tty_audit.so, module_arguments: 'disable=* enable=root' }
    
 securityfiles:
   su-ansible-access: |

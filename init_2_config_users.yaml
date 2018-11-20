@@ -9,6 +9,16 @@
   roles:
     - config_user
 
+- name: Configure Ansible audit logging
+  hosts: all
+  remote_user: ansible
+  become: true
+  become_method: sudo
+  vars_files:
+    - user_vars/user_info/ansible_user_info.yaml
+  roles:
+    - config_user_tty_audit    
+
 - name: Configure User in group ec2-user
   hosts: all
   remote_user: ansible
