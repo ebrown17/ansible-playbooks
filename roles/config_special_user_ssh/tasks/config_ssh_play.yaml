@@ -6,16 +6,17 @@
         state: directory
         owner: root
         group: root
-        mode: '0755'       
+        mode: '0755'
 
-    - name: Set custom private key location per user 
-      authorized_key:
-        key: '{{ lookup(''file'', ''{{ key_location }}'') }}'
-        manage_dir: false
-        path: '{{ identity_location }}/{{ username }}'
-        state: present
-        user: '{{ username }}'
+    - name: Copy private key to {{ remote_loc }} per special user
+      copy:
+        src: '{{ key_location }}'
+        dest: '{{ remote_loc }}'
+        owner: '{{ username }}'
+        group: '{{ username }}'
+        mode: 0400
       vars:
-        username: '{{ item.value.username }}'        
+        remote_loc: '{{ identity_location }}/{{username}}'
+        username: '{{ item.value.username }}'
         key_location: '{{ stored_keys }}/{{ groupname }}/{{ item.value.username }}/{{ item.value.username }}'
       with_dict: '{{ users }}'
