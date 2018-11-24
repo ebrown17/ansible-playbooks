@@ -1,12 +1,3 @@
-
-- name: Print security files to be created
-  debug:
-    msg: 'Content: {{ filecontent }} will be created at {{ security_location }}/{{ filename }}'    
-  vars:
-    filecontent: '{{ item.value }}'
-    filename: '{{ item.key }}'
-  with_dict: '{{ securityfiles}} '
-
 - name: Configure PAM rules per host
   block:
     - name: Create Su Security files from list and write to {{ security_location }}
