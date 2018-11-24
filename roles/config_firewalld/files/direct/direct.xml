@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <direct>
-  <rule priority="0" table="filter" ipv="ipv4" chain="OUTPUT">-m state --state ESTABLISHED,RELATED -j ACCEPT</rule>
+  <!---  current direct rules are blocking ssh on restart
+  <rule priority="0" table="filter" ipv="ipv4" chain="OUTPUT">-m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT</rule>
   <rule priority="2" table="filter" ipv="ipv4" chain="OUTPUT">-d 10.0.0.0/16  -j ACCEPT</rule>
   <rule priority="3" table="filter" ipv="ipv4" chain="OUTPUT">-j LOG --log-prefix "Denied: " --log-level 7</rule>
   <rule priority="3" table="filter" ipv="ipv4" chain="OUTPUT">-j REJECT</rule>
+  -->
 </direct>
