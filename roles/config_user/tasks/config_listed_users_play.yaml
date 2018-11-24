@@ -3,13 +3,12 @@
     - name: Create User with listed information
       user:
         append: true
-        comment: '{{ username }} created by ansible'            
-        groups: '{{ group }}'
+        comment: '{{ username }} created by ansible'
+        groups: '{{ groupname }}'
         name: '{{ username }}'
         password: '{{ password }}'
         state: present
       vars:
-        group: '{{ groupname }}'
         password: '{{ item.value.password }}'
         username: '{{ item.value.username }}'
       with_dict: '{{ users }}'
