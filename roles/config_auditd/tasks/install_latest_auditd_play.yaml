@@ -6,8 +6,14 @@
           - audit
           - audispd-plugins
         state: latest
-      register: result
+      async: 300
+      poll: 0
+      register: yum_sleeper
 
-    - name: Print result from
-      debug:
-        msg:  "{{result.results}}"
+    - name: 'YUM - Check if auditd completed for: {{ inventory_hostname }}'
+      async_status:
+        jid: "{{ yum_sleeper.ansible_job_id }}"
+      register: job_result
+      delay: 15
+      until: job_result.finished
+      retries: 20
