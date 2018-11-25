@@ -1,5 +1,20 @@
 - name: Required steps to create users
   block:
+    - name: Create User with same name as Group name
+      user:
+        append: true
+        comment: '{{ username }} created by ansible'
+        group: '{{ groupname }}'
+        groups: '{{ groupname }}'
+        name: '{{ username }}'
+        password: '{{ password }}'
+        state: present
+      vars:
+        password: '{{ item.value.password }}'
+        username: '{{ item.value.username }}'
+      with_dict: '{{ users }}'
+    when: username == groupname
+
     - name: Create User with listed information
       user:
         append: true
@@ -12,3 +27,4 @@
         password: '{{ item.value.password }}'
         username: '{{ item.value.username }}'
       with_dict: '{{ users }}'
+    when: username != groupname    
